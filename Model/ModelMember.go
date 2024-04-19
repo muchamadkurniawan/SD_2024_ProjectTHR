@@ -35,7 +35,7 @@ func memberLastId() int {
 	tempLL = &Database.DBMember
 
 	if tempLL.Next == nil {
-		return 0
+		return 1
 	} else {
 		for tempLL.Next != nil {
 			tempLL = tempLL.Next
@@ -61,12 +61,31 @@ func MemberSearch(id int) *Node.MemberLL {
 	if tempLL.Next != nil {
 		for tempLL.Next != nil {
 			if tempLL.Next.Member.Id == id {
-				return tempLL.Next
+				return tempLL
 			}
 			tempLL = tempLL.Next
 		}
-	} else {
-		return nil
 	}
 	return nil
+}
+
+func MemberDelete(id int) Node.MemberNode {
+	address := MemberSearch(id)
+	if address != nil {
+		nodeDelete := address.Next
+		address.Next = address.Next.Next
+		return nodeDelete.Member
+	}
+	return Node.MemberNode{}
+}
+
+func MemberUpdate(id int, namaDepan string, namaBelakang string, noTelp string) Node.MemberNode {
+	address := MemberSearch(id)
+	if address != nil {
+		address.Next.Member.NamaDepan = namaDepan
+		address.Next.Member.NamaBelakang = namaBelakang
+		address.Next.Member.NoTelp = noTelp
+		return address.Next.Member
+	}
+	return Node.MemberNode{}
 }

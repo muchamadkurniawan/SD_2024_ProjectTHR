@@ -2,7 +2,7 @@ package main
 
 import (
 	"SD_2024_Project/Controller"
-	"SD_2024_Project/Model"
+	"SD_2024_Project/View"
 	"fmt"
 	"os"
 )
@@ -31,16 +31,9 @@ func main() {
 	fmt.Println("Project Struktur Data 2024")
 
 	fmt.Println(Controller.MemberInsert("Kurniawan1", "aan1", "0888888"))
-	fmt.Println(Controller.MemberInsert("Kurniawan1", "", "0888888"))
-	fmt.Println(Controller.MemberInsert("Kurniawan1", "aan1", ""))
-
-	fmt.Println(Controller.MembersView())
-	alamat := Model.MemberSearch(1)
-	fmt.Println(alamat)
-	alamat.Member.Point = 100
-	fmt.Println(alamat)
-	//View.MemberInsert()
-	//View.MemberInsert()
-	//View.MemberReadAll()
-	//menu_program()
+	fmt.Println(Controller.MemberInsert("Kurniawan2", "", "0888888"))
+	fmt.Println(Controller.MemberInsert("Kurniawan3", "aan1", ""))
+	Controller.MemberInsert("kurniawan4", "aan2", "0000")
+	Controller.MemberInsert("kurniawan5", "aan3", "11111")
+	View.MemberSearch()
 }

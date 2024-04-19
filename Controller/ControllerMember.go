@@ -20,3 +20,23 @@ func MembersView() []Node.MemberNode {
 	}
 	return members
 }
+
+func MemberDelete(id int) (bool, Node.MemberNode) {
+	member := Node.MemberNode{}
+	if id < 1 {
+		return false, member
+	}
+	return true, Model.MemberDelete(id)
+}
+
+func MemberUpdate(id int, namaDepan string, namaBlk string, noTelp string) Node.MemberNode {
+	return Model.MemberUpdate(id, namaDepan, namaBlk, noTelp)
+}
+
+func MemberSearch(id int) Node.MemberNode {
+	address := Model.MemberSearch(id)
+	if address != nil {
+		return address.Next.Member
+	}
+	return Node.MemberNode{}
+}
