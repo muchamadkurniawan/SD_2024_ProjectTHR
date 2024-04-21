@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #333;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <a href="#manage-user">Manage User</a>
+    <a href="#manage-barang">Manage Barang</a>
+    <a href="#manage-penjualan">Manage Penjualan</a>
+</div>
+
+<div class="content">
+    <h1>Dashboard</h1>
+
+    <h2 id="manage-user">Manage User</h2>
+    <button id="add-user-btn" onclick="goToInsertMember()">Tambah User</button>
+    <script>
+        // Fungsi untuk mengarahkan ke page2.html saat tombol diklik
+        function goToInsertMember() {
+            window.location.href = "http://localhost:8080/insert";
+        }
+    </script>
+    <table id="user-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nama Depan</th>
+            <th>Nama Belakang</th>
+            <th>No Telp</th>
+            <th>Point</th>
+            <th>Create At</th>
+            <th>Aksi</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{range .}}
+            <tr>
+                <td>{{.Id}}</td>
+                <td>{{.NamaDepan}}</td>
+                <td>{{.NamaBelakang}}</td>
+                <td>{{.NoTelp}}</td>
+                <td>{{.Point}}</td>
+                <td>{{.CraeteAt}}</td>
+                <td>
+                    <button onclick="updateUser(this)" data-id="{{.Id}}">Update</button>
+                    <button onclick="deleteUser(this)" data-id="{{.Id}}">Delete</button>
+                </td>
+            </tr>
+        {{end}}
+        </tbody>
+    </table>
+
+</div>
+<script>
+    function updateUser(button) {
+        var userId = button.getAttribute("data-id");
+        // Redirect ke halaman update dengan menyertakan parameter ID
+        window.location.href = "/update?id=" + userId;
+    }
+
+    function deleteUser(button) {
+        var userId = button.getAttribute("data-id");
+
+        //redicet ke halaman delete dengan menyertakan parameter ID
+        window.location.href = "/delete?id=" + userId;
+
+    }
+</script>
+</body>
+</html>

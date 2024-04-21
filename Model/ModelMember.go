@@ -15,7 +15,7 @@ func MemberInsert(firstName string, lastName string, noTelp string) {
 		NamaDepan:    firstName,
 		NamaBelakang: lastName,
 		NoTelp:       noTelp,
-		CraeteAt:     time.Now().Format("2006-1-23"),
+		CraeteAt:     time.Now().Format("2006-01-02 15:04:05"),
 	}
 
 	newLL := Node.MemberLL{

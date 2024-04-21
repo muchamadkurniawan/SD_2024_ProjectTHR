@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update MemberNode Attributes</title>
+</head>
+<body>
+<h2>Update MemberNode Attributes</h2>
+<form action="/update" method="POST">
+    <label for="id">ID:</label><br>
+    <input type="text" id="id" name="id" value="{{.Id}}" readonly><br>
+
+    <label for="noTelp">No Telepon:</label><br>
+    <input type="text" id="noTelp" name="noTelp" value="{{.NoTelp}}" required><br>
+
+    <label for="namaDepan">Nama Depan:</label><br>
+    <input type="text" id="namaDepan" name="namaDepan" value="{{.NamaDepan}}" required><br>
+
+    <label for="namaBelakang">Nama Belakang:</label><br>
+    <input type="text" id="namaBelakang" name="namaBelakang" value="{{.NamaBelakang}}" required><br>
+
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>
