@@ -2,6 +2,7 @@ package main
 
 import (
 	"SD_2024_Project/Controller"
+	"SD_2024_Project/Database"
 	"SD_2024_Project/Handler"
 	"SD_2024_Project/Model"
 	"SD_2024_Project/Node"
@@ -75,25 +76,29 @@ func ControllerBarangTest() {
 	Controller.BarangInsert("Teh", 5000, 20)
 	Controller.BarangInsert("Susu", 15000, 5)
 	Controller.BarangInsert("Gula", 5000, 10)
-	fmt.Println(Controller.BarangView())
-	fmt.Println(Controller.BarangSearch(2))
-	fmt.Println(Controller.BarangSearch(4))
-	fmt.Println(Controller.BarangUpdate(1, "Kopi Hitam", 15000, 10))
-	fmt.Println(Controller.BarangUpdate(3, "Gula Merah", 10000, 10))
-	fmt.Println(Controller.BarangView())
-	fmt.Println(Controller.BarangDelete(1))
-	fmt.Println(Controller.BarangDelete(3))
-	fmt.Println(Controller.BarangView())
-	fmt.Println(Controller.BarangUpdateStok(2, 30))
-	fmt.Println(Controller.BarangView())
 }
 
+func testPenjualan() {
+	//test detail Penjualan
+	detail := []Node.DetailPenjualanNode{}
+	detail = append(detail, Node.DetailPenjualanNode{IdBarang: 1, Jumlah: 2, Harga: 0})
+	detail = append(detail, Node.DetailPenjualanNode{IdBarang: 2, Jumlah: 3, Harga: 0})
+	Model.PenjualanInsert(1, detail)
+
+	detail2 := []Node.DetailPenjualanNode{}
+	detail2 = append(detail2, Node.DetailPenjualanNode{IdBarang: 1, Jumlah: 5, Harga: 0})
+	detail2 = append(detail2, Node.DetailPenjualanNode{IdBarang: 2, Jumlah: 6, Harga: 0})
+	Model.PenjualanInsert(1, detail2)
+
+	fmt.Println(Database.DBPenjualan.Next.Next.Penjualan.Detail)
+	fmt.Println(Database.DBPenjualan.Next.Next.Penjualan.Total)
+	fmt.Println(Database.DBMember.Next.Member)
+}
 func main() {
 	//menu_program()
 	static_insert()
-	//webProgram()
-	//ControllerBarangTest()
-	//test detail Penjualan
-	cobaDetailLL := Node.DetailPenjualanLL{}
-	Model.InsertDetail(&cobaDetailLL, 1, 2, 10000)
+
+	ControllerBarangTest()
+	testPenjualan()
+	webProgram()
 }

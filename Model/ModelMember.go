@@ -89,3 +89,12 @@ func MemberUpdate(id int, namaDepan string, namaBelakang string, noTelp string) 
 	}
 	return Node.MemberNode{}
 }
+
+func MemberUpdatePoint(id int, point float32) Node.MemberNode {
+	address := MemberSearch(id)
+	if address != nil {
+		address.Next.Member.Point = address.Next.Member.Point + (point / 10000)
+		return address.Next.Member
+	}
+	return Node.MemberNode{}
+}
