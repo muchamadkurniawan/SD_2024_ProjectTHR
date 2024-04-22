@@ -4,6 +4,7 @@ import (
 	"SD_2024_Project/Controller"
 	"SD_2024_Project/Handler"
 	"SD_2024_Project/Model"
+	"SD_2024_Project/Node"
 	"fmt"
 	"net/http"
 	"os"
@@ -92,4 +93,7 @@ func main() {
 	static_insert()
 	//webProgram()
 	//ControllerBarangTest()
+	//test detail Penjualan
+	cobaDetailLL := Node.DetailPenjualanLL{}
+	Model.InsertDetail(&cobaDetailLL, 1, 2, 10000)
 }
